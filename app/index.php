@@ -1,111 +1,173 @@
 <?php
-require_once ("php/component.php");
-require_once ("php/operation.php");
+require_once "php/component.php";
+require_once "php/operation.php";
 ?>
-
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>🌟 Beautiful Book Store</title>
-    
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📚 Premium BookStore</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
 </head>
-<body>
-    <!-- Floating Particles Background -->
-    <div class="particles-bg"></div>
+<body class="bg-bookshelf">
+    <!-- Floating Books -->
+    <div class="floating-books">
+        <div class="floating-book"></div>
+        <div class="floating-book" style="background: linear-gradient(45deg, #ff9a9e, #fecfef);"></div>
+        <div class="floating-book" style="background: linear-gradient(45deg, #a8edea, #fed6e3);"></div>
+        <div class="floating-book" style="background: linear-gradient(45deg, #ffecd2, #fcb69f);"></div>
+    </div>
 
-    <main>
-        <div class="container text-center">
-            <h1 class="py-4"><i class="fas fa-swatchbook"></i> ✨ Book Store ✨</h1>
+    <main class="min-vh-100 py-5">
+        <div class="container">
+            <!-- Hero -->
+            <div class="hero-section text-center text-white mb-5">
+                <h1 class="hero-title display-2 fw-bold mb-3">Premium BookStore</h1>
+                <p class="hero-subtitle lead">Advanced Book Management with Live Analytics ✨</p>
+            </div>
 
-            <div class="form-container">
-                <div class="row">
-                    <?php inputElement("<i class='fas fa-id-badge'></i>", "📖 Book ID", "book_id", setID()); ?>
-                </div>
-                <div class="row">
-                    <div class="col-md-8">
-                        <?php inputElement("<i class='fas fa-book-open'></i>", "📚 Book Name", "book_name", ""); ?>
-                    </div>
-                    <div class="col-md-4">
-                        <?php inputElement("<i class='fas fa-building'></i>", "🏢 Publisher", "book_publisher", ""); ?>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <?php inputElement("<i class='fas fa-dollar-sign'></i>", "💰 Price", "book_price", ""); ?>
-                    </div>
-                    <div class="col-md-6">
-                        <?php inputElement("<i class='fas fa-calendar'></i>", "📅 Year", "book_year", ""); ?>
-                    </div>
-                </div>
-                
-                <div class="btn-group">
-                    <?php buttonElement("btn-create", "btn btn-success", "<i class='fas fa-plus-circle'></i> Create", "create", "data-toggle='tooltip' data-placement='bottom' title='Add New Book'"); ?>
-                    <?php buttonElement("btn-read", "btn btn-primary", "<i class='fas fa-sync-alt'></i> Read All", "read", "data-toggle='tooltip' data-placement='bottom' title='Load Books'"); ?>
-                    <?php buttonElement("btn-update", "btn btn-warning", "<i class='fas fa-edit'></i> Update", "update", "data-toggle='tooltip' data-placement='bottom' title='Edit Selected'"); ?>
-                    <?php buttonElement("btn-delete", "btn btn-danger", "<i class='fas fa-trash-alt'></i> Delete", "delete", "data-toggle='tooltip' data-placement='bottom' title='Remove Selected'"); ?>
-                    <?php deleteBtn(); ?>
+            <!-- Form -->
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <form method="POST" class="super-form card-glass shadow-lg">
+                        <div class="row g-4">
+                            <div class="col-md-6">
+                                <?php inputElement('id-badge', 'Auto ID', 'book_id', setID()); ?>
+                            </div>
+                            <div class="col-md-6">
+                                <?php inputElement('book-open', 'Book Title *', 'book_name', ''); ?>
+                            </div>
+                            <div class="col-md-4">
+                                <?php inputElement('industry', 'Publisher *', 'book_publisher', ''); ?>
+                            </div>
+                            <div class="col-md-4">
+                                <?php inputElement('dollar-sign', 'Price *', 'book_price', ''); ?>
+                            </div>
+                            <div class="col-md-4">
+                                <?php inputElement('calendar', 'Year', 'book_year', date('Y')); ?>
+                            </div>
+                            <div class="col-md-4">
+                                <?php inputElement('star', 'Rating (1-5)', 'book_rating', '5'); ?>
+                            </div>
+                            <div class="col-md-4">
+                                <?php inputElement('tags', 'Genre', 'book_genre', ''); ?>
+                            </div>
+                            <div class="col-md-4">
+                                <?php inputElement('user', 'Author', 'book_author', ''); ?>
+                            </div>
+                        </div>
+                        
+                        <div class="action-hub mt-5">
+                            <?php buttonElement('create', 'btn-premium btn-premium-success', 'plus-circle', 'create', 'title="Add Book"'); ?>
+                            <?php buttonElement('read', 'btn-premium btn-premium-primary', 'refresh', 'read', 'title="Load All"'); ?>
+                            <?php buttonElement('update', 'btn-premium btn-premium-warning', 'edit', 'update', 'title="Update"'); ?>
+                            <?php buttonElement('delete', 'btn-premium btn-premium-danger', 'trash', 'delete', 'title="Delete"'); ?>
+                            <?php if (isset($_POST['read'])) deleteBtn(); ?>
+                            <button type="button" class="btn btn-outline-light btn-lg" onclick="exportCSV()" title="Export">
+                                <i class="fas fa-download"></i> CSV
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
 
-            <!-- Enhanced Table with Search & Stats -->
-            <div class="table-container">
-                <div class="row mb-4">
-                    <div class="col-md-6">
-                        <h5><i class="fas fa-search"></i> Quick Search</h5>
-                        <input type="text" id="searchInput" class="form-control" placeholder="🔍 Search books...">
+            <!-- Live Stats -->
+            <?php if (isset($_POST['read'])): ?>
+            <div class="stats-grid mt-5">
+                <div class="stat-metric">
+                    <div class="stat-icon bg-primary">
+                        <i class="fas fa-book"></i>
                     </div>
-                    <div class="col-md-6 text-right">
-                        <div id="stats" class="stats-badge"></div>
+                    <span class="stat-number" id="totalBooks">0</span>
+                    <div class="stat-label">Total Books</div>
+                </div>
+                <div class="stat-metric">
+                    <div class="stat-icon bg-success">
+                        <i class="fas fa-dollar-sign"></i>
                     </div>
+                    <span class="stat-number" id="totalValue">$0</span>
+                    <div class="stat-label">Total Value</div>
+                </div>
+                <div class="stat-metric">
+                    <div class="stat-icon bg-warning">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <span class="stat-number" id="avgRating">0</span>
+                    <div class="stat-label">Avg Rating</div>
+                </div>
+                <div class="stat-metric">
+                    <div class="stat-icon bg-info">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <span class="stat-number" id="uniqueAuthors">0</span>
+                    <div class="stat-label">Authors</div>
+                </div>
+            </div>
+
+            <!-- Smart Table -->
+            <div class="smart-table mt-5">
+                <div class="control-panel">
+                    <div class="search-super position-relative">
+                        <i class="fas fa-search search-icon"></i>
+                        <input type="text" id="searchInput" class="form-control form-control-super" 
+                               placeholder="🔍 Search books, authors, genres...">
+                    </div>
+                    <button class="btn btn-outline-light" onclick="clearFilters()">
+                        <i class="fas fa-times"></i> Clear
+                    </button>
                 </div>
                 
                 <div class="table-responsive">
-                    <table class="table table-striped">
+                    <table class="table table-hover mb-0">
                         <thead>
                             <tr>
                                 <th><i class="fas fa-hashtag"></i> ID</th>
                                 <th><i class="fas fa-book"></i> Title</th>
-                                <th><i class="fas fa-industry"></i> Publisher</th>
+                                <th><i class="fas fa-user"></i> Author</th>
+                                <th><i class="fas fa-building"></i> Publisher</th>
                                 <th><i class="fas fa-dollar-sign"></i> Price</th>
-                                <th><i class="fas fa-calendar-alt"></i> Year</th>
-                                <th><i class="fas fa-cogs"></i> Actions</th>
+                                <th><i class="fas fa-calendar"></i> Year</th>
+                                <th><i class="fas fa-star"></i> Rating</th>
+                                <th><i class="fas fa-tag"></i> Genre</th>
+                                <th>⚙️</th>
                             </tr>
                         </thead>
-                        <tbody id="tbody">
-                            <?php
+                        <tbody id="bookTable">
+                            <?php 
                             if(isset($_POST['read'])){
                                 $result = getData();
                                 if($result){
-                                    while ($row = mysqli_fetch_assoc($result)){ ?>
-                                        <tr data-book="<?php echo strtolower($row['book_name'].' '.$row['book_publisher']); ?>">
-                                            <td data-id="<?php echo $row['id']; ?>"><?php echo $row['id']; ?></td>
-                                            <td data-id="<?php echo $row['id']; ?>"><?php echo htmlspecialchars($row['book_name']); ?></td>
-                                            <td data-id="<?php echo $row['id']; ?>"><?php echo htmlspecialchars($row['book_publisher']); ?></td>
-                                            <td data-id="<?php echo $row['id']; ?>">$<?php echo number_format($row['book_price'], 2); ?></td>
-                                            <td data-id="<?php echo $row['id']; ?>"><?php echo htmlspecialchars($row['book_year'] ?? 'N/A'); ?></td>
+                                    while($row = mysqli_fetch_assoc($result)){ ?>
+                                        <tr data-all="<?php echo strtolower(implode(' ', array_values($row))); ?>">
+                                            <td><?php echo $row['id']; ?></td>
+                                            <td class="fw-bold"><?php echo htmlspecialchars($row['book_name']); ?></td>
+                                            <td><?php echo htmlspecialchars($row['book_author'] ?? 'Unknown'); ?></td>
+                                            <td><?php echo htmlspecialchars($row['book_publisher']); ?></td>
+                                            <td class="text-success fw-bold">$<?php echo number_format($row['book_price'], 2); ?></td>
+                                            <td><?php echo $row['book_year']; ?></td>
+                                            <td class="rating-stars"><?php echo str_repeat('⭐', $row['book_rating'] ?? 5); ?></td>
+                                            <td><span class="genre-badge"><?php echo htmlspecialchars($row['book_genre']); ?></span></td>
                                             <td>
-                                                <i class="fas fa-edit btnedit" data-id="<?php echo $row['id']; ?>" title="Edit"></i>
-                                                <i class="fas fa-copy btncopy" data-id="<?php echo $row['id']; ?>" title="Copy JSON"></i>
+                                                <div class="action-icons">
+                                                    <i class="fas fa-edit btn-edit me-2" data-id="<?php echo $row['id']; ?>"></i>
+                                                    <i class="fas fa-copy btn-copy me-2" data-id="<?php echo $row['id']; ?>"></i>
+                                                    <i class="fas fa-share btn-share" data-id="<?php echo $row['id']; ?>"></i>
+                                                </div>
                                             </td>
                                         </tr>
-                            <?php }}}
-                            ?>
+                            <?php } } } ?>
                         </tbody>
                     </table>
                 </div>
             </div>
+            <?php endif; ?>
         </div>
     </main>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="php/main.js"></script>
 </body>
 </html>

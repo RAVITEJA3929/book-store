@@ -1,22 +1,17 @@
 <?php
-
 function inputElement($icon, $placeholder, $name, $value){
-    $ele = "
-        
-        <div class=\"input-group mb-2\">
-                        <div class=\"input-group-prepend\">
-                            <div class=\"input-group-text bg-warning\">$icon</div>
-                        </div>
-                        <input type=\"text\" name='$name' value='$value' autocomplete=\"off\" placeholder='$placeholder' class=\"form-control\" id=\"inlineFormInputGroup\" placeholder=\"Username\">
-                    </div>
-    
-    ";
-    echo $ele;
+    echo "
+    <div class='input-group mb-3'>
+        <div class='input-group-text bg-gradient-primary text-white'>
+            <i class='fas fa-fw'>{$icon}</i>
+        </div>
+        <input type='text' class='form-control' name='{$name}' value='{$value}' 
+               placeholder='{$placeholder}' autocomplete='off'>
+    </div>";
 }
 
-function buttonElement($btnid, $styleclass, $text, $name, $attr){
-    $btn = "
-        <button name='$name' '$attr' class='$styleclass' id='$btnid'>$text</button>
-    ";
-    echo $btn;
+function buttonElement($id, $class, $icon, $name, $attr = ''){
+    echo "<button type='submit' id='{$id}' name='{$name}' class='btn {$class} mx-2 my-1' {$attr}>
+            <i class='fas fa-fw'>{$icon}</i>
+          </button>";
 }
